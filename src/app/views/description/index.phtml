@@ -1,0 +1,18 @@
+<?php
+echo "<div class='container'>";
+foreach ($data as $key => $values) {
+    $img = $values['thumbnail_url'];
+    $img = str_replace('S.jpg', 'L.jpg', $img);
+    echo "<div class='row p-4'>
+        <div class='col-4'><img src='$img' alt='img not found'></div>
+        <div class='col-1'></div>
+        <div class='col-7 ms-3'>
+             <h6 class='text-secondary'>An Edition of $values[title]" . $values['details']['publish_date'] . "</h6>
+            <h4>" . $values['details']['title'] . "</h4>
+            <h5>" . $values['details']['by_statement'] . "</h5>
+            Latest Revision : " . $values['details']['latest_revision'] . "<br><br>
+            <a href='$values[preview_url]' class='btn btn-info'>Preview</a>";
+    echo " </div>
+    </div>";
+}
+echo "</div>";

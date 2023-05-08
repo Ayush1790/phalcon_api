@@ -1,0 +1,36 @@
+<?php
+echo "<div class='container'>";
+foreach ($data['docs'] as $key => $value) {
+    if (isset($value['isbn'][0])) {
+        $isbn = $value['isbn'][0];
+    } else {
+        $isbn = 404;
+    }
+    echo "<div class='row p-2 m-2 border'>
+            <div class='col-2  m-2'><a href='description?isbn=$isbn'><img src='https://covers.openlibrary.org/b/id/$value[cover_i]-M.jpg' alt='img not found'></a></div>
+            <div class='col-6 m-2'>
+            <h3><a href='description?isbn=$isbn'>$value[title]</a></h3>";
+    foreach ($value['author_name'] as $author_name => $name) {
+        $next = next($value['author_name']);
+        echo "$name";
+        if (true == $next) {
+            echo " and ";
+        }
+    }
+    echo "<br>first published in <strong>$value[first_publish_year]</strong><br>";
+    if (isset($value['language'])) {
+        $count = count($value['language']);
+    } else {
+        $count = 0;
+    }
+    echo  "<a href='#'>$value[edition_count] Editions </a> in  " . $count . " languages";
+    echo "</div>
+    <div class='col-3 m-2 text-center'>
+    <Br><BR>
+    <button class='btn btn-primary'>Borrow</button>
+    <br><br>
+    <button class='btn btn-success'>Want to read</button>
+     </div>
+        </div>";
+}
+echo "</div>";
